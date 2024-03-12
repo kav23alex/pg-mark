@@ -84,7 +84,7 @@ createdb benchdb && ./ref_pgbench -i benchdb >results/prepare.log 2>&1
 
         <benchmark id="pg_tpch">
             <prerequisites>
-                <zip url="#https://www.tpc.org/TPC_Documents_Current_Versions/download_programs/tools-download-request5.asp?bm_type=TPC-H" target_dir="resources/tpch" />
+                <zip url="http://dist.l.postgrespro.ru/resources/linux/pg-mark/TPC-H_Tools_v2.17.2.zip" target_dir="resources/tpch" />
                 <git url="https://github.com/tvondra/pg_tpch" target_dir="resources/pg_tpch" />
             </prerequisites>
             <prepare>
@@ -105,10 +105,10 @@ cd src/pg_tpch && bash tpch.sh ../../results tpch-db postgres >../../results/tps
 
         <benchmark id="pg_tpcds">
             <prerequisites>
-                <zip url="#https://www.tpc.org/TPC_Documents_Current_Versions/download_programs/tools-download-request5.asp?bm_type=TPC-DS" target_dir="resources/tpcds" />
+                <zip url="http://dist.l.postgrespro.ru/resources/linux/pg-mark/TPC-DS_Tools_v2.4.0.zip" target_dir="resources/tpcds" />
                 <!-- http://www.tpc.org/tpc_documents_current_versions/download_programs/tools-download-files.asp?bm_type=&original_filename=TPC-DS_Tools_v2.4.0.zip&type=Tool%20%20&download_key=xxxx -->
 
-                <tar url="https://web.archive.org/web/20160319065040/http://blog.pgaddict.com/file/tpcds-tooling.tgz" target_dir="resources/tpcds-tooling" />
+                <tar url="http://dist.l.postgrespro.ru/resources/linux/pg-mark/tpcds-tooling.tgz" target_dir="resources/tpcds-tooling" />
                 <!-- https://web.archive.org/web/20200615204853/http://blog.pgaddict.com:80/posts/performance-since-postgresql-7-4-to-9-4-tpc-ds -->
             </prerequisites>
             <prepare>
@@ -158,7 +158,7 @@ scripts/ycsb/run 1000000 1000000 'a b c d f' '10 25 50' >results/run.log 2>&1 &&
 
         <benchmark id="benchmarksql_tpcc">
             <prerequisites>
-                <zip url="https://downloads.sourceforge.net/project/benchmarksql/benchmarksql-5.0.zip" target_dir="resources/benchmarksql"
+                <zip url="http://dist.l.postgrespro.ru/resources/linux/pg-mark/benchmarksql-5.0.zip" target_dir="resources/benchmarksql"
                      setup="scripts/benchmarksql/compile" />
             </prerequisites>
             <prepare>
@@ -365,7 +365,7 @@ cat results/run.log
         <benchmark id="job">
             <prerequisites>
                 <git url="https://github.com/gregrahn/join-order-benchmark.git" target_dir="resources/job" />
-                <zip url="https://oc.postgrespro.ru/index.php/s/Zo8kZiT8V8GJbvo/download" target_dir="resources/job-imdb" />
+                <zip url="http://dist.l.postgrespro.ru/resources/linux/pg-mark/job-imdb.zip" target_dir="resources/job-imdb" />
             </prerequisites>
             <prepare>
 <![CDATA[

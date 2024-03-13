@@ -427,6 +427,52 @@ cat results/time.txt
                 <metric id="time" regexp="real\s+([0-9.]+)" type="string" />
             </results>
         </benchmark>
+        <benchmark id="go_tpcc">
+            <prerequisites>
+                <tar url="http://dist.l.postgrespro.ru/resources/linux/pg-mark/go-tpc_latest_linux_amd64.tar.gz" target_dir="resources/go_tpcc" />
+            </prerequisites>
+            <prepare>
+<![CDATA[
+(
+createdb go_tpcc &&
+resources/go_tpcc/go-tpc tpcc prepare -d postgres -U postgres -D go_tpcc -H 127.0.0.1 -P 5432 --conn-params sslmode=disable
+)>results/prepare.log 2>&1
+]]>
+            </prepare>
+            <execute>
+<![CDATA[
+resources/go_tpcc/go-tpc tpcc run -d postgres -U postgres --threads 4 --time 300s -D go_tpcc -H 127.0.0.1 -P 5432 --conn-params sslmode=disable>results/run.log 2>&1
+cat results/run.log
+]]>
+            </execute>
+            <results>
+                <metric id="tpmC" regexp="tpmC: ([0-9.]+)" />
+                <metric id="tpmTotal" regexp="tpmTotal: ([0-9.]+)" />
+                <metric id="efficiency" regexp="efficiency: ([0-9.]+)" />
+            </results>
+        </benchmark>
 
+        <benchmark id="go_tpch">
+            <prerequisites>
+                <tar url="http://dist.l.postgrespro.ru/resources/linux/pg-mark/go-tpc_latest_linux_amd64.tar.gz" target_dir="resources/go_tpch" />
+            </prerequisites>
+            <prepare>
+<![CDATA[
+( 
+createdb go_tpch &&
+resources/go_tpch/go-tpc tpch prepare -d postgres -U postgres -D go_tpch -H 127.0.0.1 -P 5432 --conn-params sslmode=disable
+)>results/prepare.log 2>&1
+]]>
+            </prepare>
+            <execute>
+<![CDATA[
+resources/go_tpch/go-tpc tpch run -d postgres -U postgres --threads 4 --time 300s -D go_tpch -H 127.0.0.1 -P 5432 --conn-params sslmode=disable>results/run.log 2>&1
+cat results/run.log
+]]>
+            </execute>
+            <results>
+                <metricset id="$1" regexp="'^\[Summary\]\s(Q[0-9]+):\s([0-9.]+)" />
+            </results>
+        </benchmark>
     </benchmarks>
 </config>

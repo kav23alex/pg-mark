@@ -369,7 +369,7 @@ cat results/run.log
             </prerequisites>
             <prepare>
 <![CDATA[
-scripts/job/prepare-py3 >results/prepare.log 2>&1
+scripts/job/prepare >results/prepare.log 2>&1
 ]]>
             </prepare>
             <execute>

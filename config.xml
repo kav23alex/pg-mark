@@ -471,7 +471,7 @@ cat results/run.log
 ]]>
             </execute>
             <results>
-                <metricset id="$1" regexp="'^\[Summary\]\s(Q[0-9]+):\s([0-9.]+)" />
+                <metricset id="Query$1" regexp="^\[Summary\]\s(Q[0-9]+):\s([0-9.]+)" />
             </results>
         </benchmark>
     </benchmarks>
